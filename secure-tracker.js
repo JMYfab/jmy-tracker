@@ -18,3 +18,16 @@ function showLookupResult(order){
  lookupResult.hidden=false
 }
 lookupForm.addEventListener('submit',async(event)=>{event.preventDefault();const orderNumber=document.querySelector('#order-number').value.trim(),lastName=document.querySelector('#last-name').value.trim();if(!orderNumber||!lastName)return showLookupMessage('Please enter both your order number and last name.');showLookupMessage('Looking up your order…');try{const response=await fetch(`${baseUrl}/rest/v1/rpc/lookup_order`,{method:'POST',headers:{apikey:publicKey,'Content-Type':'application/json'},body:JSON.stringify({p_order_number:orderNumber,p_last_name:lastName})}),data=await response.json();if(!response.ok||!data?.length)return showLookupMessage('We could not find a matching order. Please check both entries or contact JMY for help.');showLookupResult(data[0])}catch{showLookupMessage('Unable to reach the secure tracker. Please try again shortly.')}});
+
+async function openPrivateOrderLink(){
+ const accessToken=new URLSearchParams(location.search).get('access');
+ if(!accessToken)return;
+ lookupForm.hidden=true;
+ showLookupMessage('Opening your order…');
+ try{
+  const response=await fetch(`${baseUrl}/rest/v1/rpc/lookup_order_by_access_token`,{method:'POST',headers:{apikey:publicKey,'Content-Type':'application/json'},body:JSON.stringify({p_access_token:accessToken})}),data=await response.json();
+  if(!response.ok||!data?.length){lookupForm.hidden=false;return showLookupMessage('This private order link is no longer valid. You can still search using your order number and last name below.')}
+  showLookupResult(data[0]);
+ }catch{lookupForm.hidden=false;showLookupMessage('Unable to open the private order link. Please use the order search below.')}
+}
+openPrivateOrderLink();
