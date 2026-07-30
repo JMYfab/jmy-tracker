@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Track Your Order | JMY</title>
   <link rel="stylesheet" href="styles.css">
@@ -31,11 +32,8 @@
         <div class="result-heading"><p class="eyebrow">Order details</p><span id="status-badge" class="status-badge"></span></div>
         <dl class="order-details">
           <div><dt>Order number</dt><dd id="result-order-number"></dd></div>
-          <div><dt>Last name</dt><dd id="result-name"></dd></div>
-          <div><dt>Organization</dt><dd id="result-organization"></dd></div>
-          <div><dt>Date of purchase</dt><dd id="result-purchase-date"></dd></div>
           <div><dt id="fulfillment-label">Estimated shipping date</dt><dd id="result-fulfillment-date"></dd></div>
-          <div id="tracking-row" hidden><dt>Tracking number</dt><dd><a id="tracking-link" target="_blank" rel="noopener"></a></dd></div>
+          <div id="tracking-row" hidden><dt>Tracking number</dt><dd><a id="tracking-link" target="_blank" rel="noopener noreferrer"></a></dd></div>
         </dl>
         <p id="status-note" class="status-note"></p>
       </section>
@@ -47,6 +45,6 @@
     </footer>
   </main>
   <script src="supabase-config.js"></script>
-  <script src="secure-tracker.js?v=20260729-private-links"></script>
+  <script src="secure-tracker.js?v=20260730-tracker-only"></script>
 </body>
 </html>

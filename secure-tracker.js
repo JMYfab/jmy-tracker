@@ -2,7 +2,7 @@ const baseUrl=window.JMY_SUPABASE_URL,publicKey=window.JMY_SUPABASE_PUBLISHABLE_
 const put=(selector,value)=>{document.querySelector(selector).textContent=value||'—'};
 function showLookupMessage(text){lookupResult.hidden=true;lookupMessage.textContent=text;lookupMessage.hidden=false}
 function showLookupResult(order){
- lookupMessage.hidden=true;put('#result-order-number',order.order_number);put('#result-name',order.customer_name);put('#result-organization',order.organization);put('#result-purchase-date',new Date(`${order.purchase_date}T00:00:00`).toLocaleDateString());put('#result-fulfillment-date',new Date(`${order.shipping_date}T00:00:00`).toLocaleDateString());
+ lookupMessage.hidden=true;put('#result-order-number',order.order_number);put('#result-fulfillment-date',new Date(`${order.shipping_date}T00:00:00`).toLocaleDateString());
  const badge=document.querySelector('#status-badge');badge.textContent=order.status;badge.className=`status-badge ${order.status.toLowerCase()}`;
  const row=document.querySelector('#tracking-row'),link=document.querySelector('#tracking-link'),hasTracking=Boolean(order.tracking_number&&!order.pickup_from_organization);row.hidden=!hasTracking;
  if(hasTracking){link.textContent=order.tracking_number;link.href=`https://www.ups.com/track?loc=en_US&tracknum=${encodeURIComponent(order.tracking_number)}`}else{link.removeAttribute('href');link.textContent=''}
