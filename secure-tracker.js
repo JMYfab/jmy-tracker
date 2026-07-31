@@ -3,7 +3,7 @@ const put=(selector,value)=>{document.querySelector(selector).textContent=value|
 function showLookupMessage(text){lookupResult.hidden=true;lookupMessage.textContent=text;lookupMessage.hidden=false}
 function showLookupResult(order){
  lookupMessage.hidden=true;put('#result-order-number',order.order_number);put('#result-fulfillment-date',new Date(`${order.shipping_date}T00:00:00`).toLocaleDateString());
- const badge=document.querySelector('#status-badge');badge.textContent=order.status;badge.className=`status-badge ${order.status.toLowerCase()}`;
+ const badge=document.querySelector('#status-badge');badge.textContent=`Status: ${order.status}`;badge.className=`status-badge ${order.status.toLowerCase()}`;
  const row=document.querySelector('#tracking-row'),link=document.querySelector('#tracking-link'),hasTracking=Boolean(order.tracking_number&&!order.pickup_from_organization);row.hidden=!hasTracking;
  if(hasTracking){const carrier=order.shipping_carrier||'UPS',urls={UPS:`https://www.ups.com/track?loc=en_US&tracknum=${encodeURIComponent(order.tracking_number)}`,FedEx:`https://www.fedex.com/fedextrack/?trknbr=${encodeURIComponent(order.tracking_number)}`,USPS:`https://tools.usps.com/go/TrackConfirmAction?tLabels=${encodeURIComponent(order.tracking_number)}`};link.textContent=`${carrier}: ${order.tracking_number}`;link.href=urls[carrier]||urls.UPS}else{link.removeAttribute('href');link.textContent=''}
  const label=document.querySelector('#fulfillment-label');
