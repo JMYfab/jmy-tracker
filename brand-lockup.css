@@ -1,0 +1,23 @@
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0 0 10px;
+}
+.brand-lockup .brand-logo {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.brand-name {
+  color: var(--ink);
+  font-family: Georgia, serif;
+  font-size: clamp(1.55rem, 5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+@media (max-width: 510px) {
+  .brand-lockup { gap: 14px; }
+  .brand-name { font-size: 1.35rem; white-space: normal; }
+}
