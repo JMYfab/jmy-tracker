@@ -8,12 +8,13 @@ function showLookupResult(order){
  if(hasTracking){const carrier=order.shipping_carrier||'UPS',urls={UPS:`https://www.ups.com/track?loc=en_US&tracknum=${encodeURIComponent(order.tracking_number)}`,FedEx:`https://www.fedex.com/fedextrack/?trknbr=${encodeURIComponent(order.tracking_number)}`,USPS:`https://tools.usps.com/go/TrackConfirmAction?tLabels=${encodeURIComponent(order.tracking_number)}`};link.textContent=`${carrier}: ${order.tracking_number}`;link.href=urls[carrier]||urls.UPS}else{link.removeAttribute('href');link.textContent=''}
  const label=document.querySelector('#fulfillment-label');
  if(order.pickup_from_organization){
-  if(order.status==='Delivered'){label.textContent='Delivered to organization';put('#status-note','Your order has been delivered to your organization’s designated contact. They will notify you when it is ready for pickup. There may be a short delay between delivery and pickup availability.')}
+  if(order.status==='Delivered'){label.textContent='Delivered to organization';put('#status-note','Your order has been delivered to your organization’s designated contact. They will notify you when it is ready for pickup. There may be a short delay between delivery and pickup availability. This private link automatically closes 60 days after completion.')}
   else if(order.status==='Shipped'){label.textContent='Shipped to organization';put('#status-note','Your order is on its way to your organization’s designated contact. They will notify you when it is ready for pickup.')}
   else{label.textContent='Estimated shipping date';put('#status-note','Your order will be delivered to your organization’s designated contact. They will notify you when it is ready for pickup. If the estimated shipping date changes, we will contact you with an update.')}
  }
- else if(order.status==='Delivered'){label.textContent='Delivered date';put('#status-note','Your order has been delivered. Thank you for your purchase!')}
+ else if(order.status==='Delivered'){label.textContent='Delivered date';put('#status-note','Your order has been delivered. Thank you for your purchase! This private link automatically closes 60 days after completion.')}
  else if(order.status==='Shipped'){label.textContent='Shipped date';put('#status-note',hasTracking?'Your order has shipped. Select the tracking number above for the latest delivery information.':'Your order has shipped.')}
+ else if(order.status==='Complete'){label.textContent='Estimated shipping date';put('#status-note','Your order is complete. This private link automatically closes 60 days after completion.')}
  else{label.textContent='Estimated shipping date';put('#status-note','This is an estimated shipping date. If it changes, we will contact you with an update.')}
  lookupResult.hidden=false
 }
