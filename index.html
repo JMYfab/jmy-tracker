@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://nuugxlkvqfnesvxkctaj.supabase.co; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Track Your Order | JMY</title>
   <link rel="stylesheet" href="styles.css">
@@ -14,20 +16,8 @@
     <section class="tracker-card" aria-labelledby="page-title">
       <div class="brand-lockup"><img class="brand-logo" src="email-logo.jpg" alt="We Grow You"><span class="brand-name">JMY Fabrication</span></div>
       <p class="eyebrow">Order tracker</p>
-      <h1 id="page-title">Find your order</h1>
-      <p class="intro">Enter your order number and last name to see your current order status.</p>
-      <form id="tracker-form" novalidate>
-          <label for="order-number">Order number</label>
-          <div class="search-row">
-          <input id="order-number" type="text" autocomplete="off" placeholder="Example: JMY-1001" required>
-          </div>
-          <label for="last-name">Last name</label>
-          <div class="search-row">
-          <input id="last-name" type="text" autocomplete="family-name" placeholder="Example: Smith" required>
-          <button type="submit">Track order</button>
-          </div>
-        <p class="field-help">Enter both details exactly as they appear on your order. They are not case sensitive.</p>
-      </form>
+      <h1 id="page-title">Your private order tracker</h1>
+      <p class="intro">Open the private tracking link from your JMY Fabrication email to see your order status.</p>
       <section id="message" class="message" aria-live="polite" hidden></section>
       <section id="result" class="order-result" aria-live="polite" hidden>
         <div class="result-heading"><p class="eyebrow">Order details</p><span id="status-badge" class="status-badge"></span></div>
@@ -46,6 +36,6 @@
     </footer>
   </main>
   <script src="supabase-config.js"></script>
-  <script src="secure-tracker.js?v=20260730-status-label"></script>
+  <script src="secure-tracker.js?v=20260831-private-link"></script>
 </body>
 </html>

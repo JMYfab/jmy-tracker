@@ -1,4 +1,4 @@
-const baseUrl=window.JMY_SUPABASE_URL,publicKey=window.JMY_SUPABASE_PUBLISHABLE_KEY,lookupForm=document.querySelector('#tracker-form'),lookupMessage=document.querySelector('#message'),lookupResult=document.querySelector('#result');
+const baseUrl=window.JMY_SUPABASE_URL,publicKey=window.JMY_SUPABASE_PUBLISHABLE_KEY,lookupMessage=document.querySelector('#message'),lookupResult=document.querySelector('#result');
 const put=(selector,value)=>{document.querySelector(selector).textContent=value||'—'};
 function showLookupMessage(text){lookupResult.hidden=true;lookupMessage.textContent=text;lookupMessage.hidden=false}
 function showLookupResult(order){
@@ -17,17 +17,15 @@ function showLookupResult(order){
  else{label.textContent='Estimated shipping date';put('#status-note','This is an estimated shipping date. If it changes, we will contact you with an update.')}
  lookupResult.hidden=false
 }
-lookupForm.addEventListener('submit',async(event)=>{event.preventDefault();const orderNumber=document.querySelector('#order-number').value.trim(),lastName=document.querySelector('#last-name').value.trim();if(!orderNumber||!lastName)return showLookupMessage('Please enter both your order number and last name.');showLookupMessage('Looking up your order…');try{const response=await fetch(`${baseUrl}/rest/v1/rpc/lookup_order`,{method:'POST',headers:{apikey:publicKey,'Content-Type':'application/json'},body:JSON.stringify({p_order_number:orderNumber,p_last_name:lastName})}),data=await response.json();if(!response.ok||!data?.length)return showLookupMessage('We could not find a matching order. Please check both entries or contact JMY for help.');showLookupResult(data[0])}catch{showLookupMessage('Unable to reach the secure tracker. Please try again shortly.')}});
-
 async function openPrivateOrderLink(){
- const accessToken=new URLSearchParams(location.search).get('access');
- if(!accessToken)return;
- lookupForm.hidden=true;
+ const accessToken=new URLSearchParams(location.hash.slice(1)).get('access')||'';
+ if(location.hash)history.replaceState(null,'',`${location.pathname}${location.search}`);
+ if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(accessToken))return showLookupMessage('Use the private tracker link in your JMY Fabrication email to open your order.');
  showLookupMessage('Opening your order…');
  try{
   const response=await fetch(`${baseUrl}/rest/v1/rpc/lookup_order_by_access_token`,{method:'POST',headers:{apikey:publicKey,'Content-Type':'application/json'},body:JSON.stringify({p_access_token:accessToken})}),data=await response.json();
-  if(!response.ok||!data?.length){lookupForm.hidden=false;return showLookupMessage('This private order link is no longer valid. You can still search using your order number and last name below.')}
+  if(!response.ok||!data?.length)return showLookupMessage('This private order link is not valid. Contact JMY Fabrication for a replacement link.');
   showLookupResult(data[0]);
- }catch{lookupForm.hidden=false;showLookupMessage('Unable to open the private order link. Please use the order search below.')}
+ }catch{showLookupMessage('Unable to open the private order link. Please try again shortly or contact JMY Fabrication.')}
 }
 openPrivateOrderLink();
