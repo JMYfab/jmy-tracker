@@ -19,6 +19,7 @@ function showLookupResult(order){
  lookupResult.hidden=false
 }
 async function openPrivateOrderLink(){
+ if(new URLSearchParams(location.hash.slice(1)).has('rewards'))return;
  const accessToken=new URLSearchParams(location.hash.slice(1)).get('access')||'';
  if(location.hash)history.replaceState(null,'',`${location.pathname}${location.search}`);
  if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(accessToken))return showLookupMessage('Use the private tracker link in your JMY Fabrication email to open your order.');

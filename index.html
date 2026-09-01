@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="enhancements.css">
   <link rel="stylesheet" href="brand-lockup.css">
+  <link rel="stylesheet" href="rewards.css?v=20260901">
 </head>
 <body>
   <main class="page-shell">
@@ -28,14 +29,29 @@
         </dl>
         <p id="status-note" class="status-note"></p>
       </section>
+      <section id="rewards-result" class="rewards-result" aria-live="polite" hidden>
+        <p class="eyebrow">Private rewards tally</p>
+        <h1 id="rewards-organization"></h1>
+        <p class="intro rewards-intro">This page reflects the latest rewards information published by JMY Fabrication.</p>
+        <div class="rewards-summary">
+          <div><span>Store rewards earned</span><strong id="rewards-store-earned"></strong><small id="rewards-lifetime-pieces"></small></div>
+          <div><span>Referral rewards earned</span><strong id="rewards-referral-earned"></strong><small id="rewards-referral-pieces"></small></div>
+          <div><span>Rewards used</span><strong id="rewards-used"></strong></div>
+          <div class="rewards-available"><span>Available rewards balance</span><strong id="rewards-available"></strong></div>
+        </div>
+        <h2>Rewards-use history</h2>
+        <div id="rewards-transactions" class="rewards-transactions"></div>
+        <p id="rewards-updated" class="status-note"></p>
+      </section>
     </section>
     <footer class="support">
-      <p>Need help with your order?</p>
+      <p>Need help?</p>
       <p><a href="mailto:WeGrowYou@jmyfabrication.com">WeGrowYou@jmyfabrication.com</a></p>
       <p><a href="tel:+13157679062">315-767-9062</a></p>
     </footer>
   </main>
   <script src="supabase-config.js"></script>
-  <script src="secure-tracker.js?v=20260831-link-safeguards"></script>
+  <script src="secure-tracker.js?v=20260901-rewards"></script>
+  <script src="rewards-tracker.js?v=20260901"></script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+.rewards-result { margin-top: 8px; }
+.rewards-result > .eyebrow { margin-top: 18px; }
+.rewards-intro { margin-bottom: 22px; }
+.rewards-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 28px; }
+.rewards-summary > div { padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: #f7f3e9; }
+.rewards-summary span,
+.rewards-summary small { display: block; color: var(--muted); font-size: .78rem; font-weight: 700; }
+.rewards-summary strong { display: block; margin: 5px 0; font-size: 1.45rem; }
+.rewards-summary .rewards-available { grid-column: 1 / -1; border: 2px solid var(--slate); background: #e8eff1; }
+.rewards-summary .rewards-available strong { font-size: 2rem; color: var(--slate); }
+.rewards-transactions { margin: 14px 0 22px; border-top: 1px solid var(--line); }
+.rewards-transaction { display: grid; grid-template-columns: 110px 1fr auto; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.rewards-transaction strong { text-align: right; }
+.rewards-empty { color: var(--muted); line-height: 1.5; }
+
+@media (max-width: 510px) {
+  .rewards-summary { grid-template-columns: 1fr; }
+  .rewards-summary .rewards-available { grid-column: auto; }
+  .rewards-transaction { grid-template-columns: 1fr auto; }
+  .rewards-transaction span:first-child { grid-column: 1 / -1; }
+}
