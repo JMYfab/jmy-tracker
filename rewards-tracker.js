@@ -1,16 +1,16 @@
-const rewardsToken=new URLSearchParams(location.hash.slice(1)).get('rewards')||'';
+const rewardsToken=new URLSearchParams(location.hash.slice(1)).get('rewards')||'',rewardsView=new URLSearchParams(location.search).get('view')==='rewards';
 
-if(rewardsToken){
-  history.replaceState(null,'',`${location.pathname}${location.search}`);
+if(rewardsToken||rewardsView){
   const message=document.querySelector('#message'),orderResult=document.querySelector('#result'),rewardsResult=document.querySelector('#rewards-result');
   const money=value=>Number(value||0).toLocaleString('en-US',{style:'currency',currency:'USD'});
   const dateText=value=>value?new Date(`${value}T00:00:00`).toLocaleDateString():'Not recorded';
+  if(rewardsToken)history.replaceState(null,'',`${location.pathname}?view=rewards`);
   document.title='Your Rewards | JMY';
   document.querySelector('.tracker-card > .eyebrow').textContent='JMY Rewards';
   document.querySelector('#page-title').textContent='Your private rewards page';
   document.querySelector('.tracker-card > .intro').textContent='View your current rewards balance and rewards-use history.';
-  orderResult.hidden=true;rewardsResult.hidden=true;message.textContent='Opening your rewards tally…';message.hidden=false;
-  (async()=>{
+  orderResult.hidden=true;rewardsResult.hidden=true;message.textContent=rewardsToken?'Opening your rewards tally…':'This rewards link is incomplete. Open the full private link from your JMY Fabrication email.';message.hidden=false;
+  if(rewardsToken)(async()=>{
     if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(rewardsToken))throw new Error('invalid');
     const response=await fetch(`${window.JMY_SUPABASE_URL}/rest/v1/rpc/lookup_reward_account_by_access_token`,{method:'POST',headers:{apikey:window.JMY_SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},body:JSON.stringify({p_access_token:rewardsToken})}),rows=await response.json();
     if(!response.ok||!rows?.length)throw new Error('not-found');
