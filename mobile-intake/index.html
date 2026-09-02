@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://nuugxlkvqfnesvxkctaj.supabase.co; style-src 'self'; script-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self' https://nuugxlkvqfnesvxkctaj.supabase.co">
+  <title>JMY Mobile Intake</title>
+  <link rel="stylesheet" href="mobile-intake.css?v=20260902-1">
+</head>
+<body><main>
+  <header><p class="eyebrow">JMY FABRICATION • PRIVATE</p><h1>Mobile Intake</h1><p>Capture customer and project details securely while away from the office.</p></header>
+  <section id="sign-in-card" class="card"><h2>Administrator sign-in</h2><p>Only an approved JMY administrator can submit an intake.</p><button id="sign-in" type="button">Sign in with GitHub</button><p id="auth-message" class="message" hidden></p></section>
+  <form id="intake-form" class="card" hidden autocomplete="off">
+    <div class="security-note"><strong>Encrypted before upload</strong><span>Names, contact details, sizes, measurements, and notes are unreadable in the online queue.</span></div>
+    <h2>Customer</h2><div class="grid">
+      <label>Organization<input name="organization" required></label><label>First name<input name="firstName" autocomplete="given-name"></label><label>Last name<input name="lastName" autocomplete="family-name" required></label><label>Email<input name="email" type="email" autocomplete="email"></label><label>Phone<input name="phone" type="tel" autocomplete="tel"></label><label class="wide">Address<textarea name="address" rows="2" autocomplete="street-address"></textarea></label>
+    </div>
+    <h2>Project</h2><div class="grid">
+      <label>Project type<input name="projectType" placeholder="Apparel, sign, printing…"></label><label>Needed by<input name="dueDate" type="date"></label><label>Approximate quantity<input name="quantity" type="number" min="0" step="1"></label><label>Colors<input name="colors"></label><label class="wide">Sizes and quantities<textarea name="sizes" rows="3" placeholder="Example: S–2, M–6, L–8, XL–4"></textarea></label><label class="wide">Measurements<textarea name="measurements" rows="4" placeholder="Label every measurement and include units."></textarea></label><label class="wide">Project details and notes<textarea name="notes" rows="5"></textarea></label>
+    </div>
+    <label>Encryption password<input id="encryption-password" type="password" minlength="12" autocomplete="off" required><small>Use the same private intake password when importing on the office computer. It is never uploaded or saved.</small></label>
+    <label class="confirm"><input id="no-sensitive-data" type="checkbox" required> This entry contains no payment-card number, Social Security number, account password, medical record, or identification document.</label>
+    <button id="submit-intake" type="submit">Encrypt and save intake</button><p id="form-message" class="message" hidden></p>
+  </form>
+</main><script src="../supabase-config.js"></script><script src="mobile-intake.js?v=20260902-1"></script></body>
+</html>
