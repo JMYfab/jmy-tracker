@@ -6,7 +6,7 @@
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://nuugxlkvqfnesvxkctaj.supabase.co; style-src 'self'; script-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self' https://nuugxlkvqfnesvxkctaj.supabase.co; frame-ancestors 'none'">
   <title>JMY Mobile Calendar</title>
-  <link rel="stylesheet" href="mobile-calendar.css?v=20260915-1">
+  <link rel="stylesheet" href="mobile-calendar.css?v=20260915-2">
 </head>
 <body>
   <main>
@@ -14,9 +14,11 @@
     <section id="sign-in-card" class="card"><h2>Administrator sign-in</h2><p>Use the approved JMY GitHub account. No tracker password is used or stored here.</p><button id="sign-in">Sign in with GitHub</button><p id="auth-message" class="message" hidden></p></section>
     <section id="calendar-app" hidden>
       <div class="security-note"><strong>Schedule information only</strong><span>Invoice time is shown as a generic JMY job. Prices, customers, files, payments, and invoice details stay on the office computer.</span></div>
-      <div class="toolbar card"><button id="previous-week" class="secondary">← Week</button><button id="today">Today</button><button id="next-week" class="secondary">Week →</button><button id="add-item">Add</button></div>
+      <div class="view-switch card" aria-label="Calendar view"><button id="week-view">Week</button><button id="month-view" class="secondary">Month</button></div>
+      <div class="toolbar card"><button id="previous-period" class="secondary">← Week</button><button id="today">Today</button><button id="next-period" class="secondary">Week →</button><button id="refresh" class="secondary">Refresh</button><button id="add-item">Add</button></div>
       <h2 id="week-label"></h2>
       <div id="week" class="week"></div>
+      <div id="empty-period" class="card empty-period" hidden><strong>No schedule items are synced for this period.</strong><span>On the office computer, press <b>Sync mobile calendar</b>, then press Refresh here.</span></div>
       <p id="calendar-message" class="message" hidden></p>
     </section>
   </main>
@@ -29,6 +31,6 @@
     <button type="submit">Save</button>
   </form></dialog>
   <script src="supabase-config.js"></script>
-  <script src="mobile-calendar.js?v=20260915-2"></script>
+  <script src="mobile-calendar.js?v=20260915-3"></script>
 </body>
 </html>
