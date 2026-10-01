@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://nuugxlkvqfnesvxkctaj.supabase.co; style-src 'self'; script-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self' https://nuugxlkvqfnesvxkctaj.supabase.co; frame-ancestors 'none'">
   <title>JMY Mobile Workspace</title>
   <link rel="stylesheet" href="mobile-calendar.css?v=20260930-1">
-  <link rel="stylesheet" href="mobile-calendar-extra.css?v=20260930-2">
+  <link rel="stylesheet" href="mobile-calendar-extra.css?v=20260930-3">
 </head>
 <body>
   <main>
@@ -29,12 +29,12 @@
   <dialog id="editor"><form id="editor-form">
     <div class="dialog-title"><h2 id="editor-title">Add schedule item</h2><button type="button" id="close-editor" class="icon secondary" aria-label="Close">×</button></div>
     <label>Type<select id="item-type"><option value="appointment">Appointment</option><option value="task">Task</option></select></label>
-    <label>Title<input id="item-title" maxlength="160" required placeholder="Example: Matt doctor"></label>
-    <div class="grid"><label>Date<input id="item-date" type="date" required></label><label>Start time<input id="item-time" type="time" min="07:00" max="21:00" step="1800" required></label><label>Duration<select id="item-duration"><option value="10">10 minutes</option><option value="20">20 minutes</option><option value="30" selected>30 minutes</option><option value="60">1 hour</option><option value="90">1½ hours</option><option value="120">2 hours</option><option value="180">3 hours</option><option value="240">4 hours</option></select></label><label>Assigned to<input id="item-assignee" maxlength="100" placeholder="Optional"></label></div>
+    <label>Title<input id="item-title" maxlength="150" required placeholder="Example: Matt doctor"></label>
+    <div class="grid"><label>Date<input id="item-date" type="date" required></label><label>Start time<input id="item-time" type="time" min="07:00" max="21:00" step="1800" required></label><label>Duration<select id="item-duration"><option value="10">10 minutes</option><option value="20">20 minutes</option><option value="30" selected>30 minutes</option><option value="60">1 hour</option><option value="90">1½ hours</option><option value="120">2 hours</option><option value="180">3 hours</option><option value="240">4 hours</option></select></label><label>Priority<select id="item-priority"><option>Normal</option><option>Urgent</option></select></label><label>Assigned to<input id="item-assignee" maxlength="100" placeholder="Optional"></label></div>
     <label class="complete"><input id="item-completed" type="checkbox"> Completed</label>
     <button type="submit">Save</button>
   </form></dialog>
   <script src="supabase-config.js"></script>
-  <script src="mobile-calendar.js?v=20260930-2"></script>
+  <script src="mobile-calendar.js?v=20260930-3"></script>
 </body>
 </html>
